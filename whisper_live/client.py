@@ -2,6 +2,7 @@ import os
 import shutil
 import wave
 
+import requests 
 import numpy as np
 import pyaudio
 import threading
@@ -119,6 +120,17 @@ class Client:
 
         # Truncate to last 3 entries for brevity.
         text = text[-3:]
+        url = 'https://api.deafassistant.com/stream/LiteSmartAdd'
+        data = {'roomName': 'ae', 
+                'description': 'Audio enhancement', 
+                'transcript': text[0],
+                'inputLanguage': 'en',
+                'outputLanguage': 'fr',                
+                'isActivelyStreaming': True,                
+                'isPremiumCustomer': False                                
+                }
+        headers = {'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json; charset=utf-8'}
+        response = requests.post(url, data=json.dumps(data), headers=headers, verify=False)
         utils.clear_screen()
         utils.print_transcript(text)
 
