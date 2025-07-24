@@ -11,7 +11,7 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="whisper-live",
+    name="whisper_live",
     version=__version__,
     description="A nearly-live implementation of OpenAI's Whisper.",
     long_description=README,
@@ -43,18 +43,25 @@ setup(
     ),
     install_requires=[
         "PyAudio",
-        "faster-whisper==1.0.1",
+        "faster-whisper==1.1.0",
         "torch",
         "torchaudio",
         "websockets",
-        "onnxruntime==1.16.0",
-        "ffmpeg-python",
+        "onnxruntime==1.17.0",
         "scipy",
         "websocket-client",
         "numba",
-        "openai-whisper",
+        "openai-whisper==20240930",
         "kaldialign",
         "soundfile",
+        "tokenizers==0.20.3",
+        "librosa",
+        "numpy==1.26.4",
+        "openvino",
+        "openvino-genai",
+        "openvino-tokenizers",
+        "optimum", 
+        "optimum-intel",
     ],
-    python_requires=">=3.8"
+    python_requires=">=3.9"
 )
