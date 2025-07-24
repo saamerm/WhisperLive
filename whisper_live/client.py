@@ -3,6 +3,7 @@ import shutil
 import wave
 
 import requests 
+
 import numpy as np
 import pyaudio
 import threading
@@ -120,7 +121,21 @@ class Client:
 
         # Truncate to last 3 entries for brevity.
         text = text[-3:]
+        # print(text)
+        # url = 'https://ipinfo.io/json'
+        # url = 'https://localhost:5001/stream/LiteSmartAdd'
         url = 'https://api.deafassistant.com/stream/LiteSmartAdd'
+        # roomName: streamName.lowercased(), description: description, transcript: oldTranscript, inputLanguage: Locale.preferredLanguages[0], outputLanguage: outputLanguage, isActivelyStreaming: true, isPremiumCustomer: false
+        # data = '''{        
+        #     "roomName": "ae",
+        #     "description": "Audio enhancement",
+        #     "transcript": "Hello how's it going",
+        #     "inputLanguage": "en",
+        #     "outputLanguage" "fr",
+        #     "isActivelyStreaming" = "true",
+        #     "isPremiumCustomer" = "false"
+        # }'''
+        
         data = {'roomName': 'ae', 
                 'description': 'Audio enhancement', 
                 'transcript': text[0],
@@ -131,6 +146,23 @@ class Client:
                 }
         headers = {'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json; charset=utf-8'}
         response = requests.post(url, data=json.dumps(data), headers=headers, verify=False)
+                    # urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
+                    # urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")        // the expected response is also JSON
+        print("response")
+        print(response.reason)
+        print(response.status_code)
+        print(response.headers)
+        print(response.raw)
+        print(response.request.headers)
+        # response = requests.post(url, json={"roomName": "ae", 
+        #                                     "transcript": "Hello how's it going",
+        #                                     "inputLanguage": "en",
+        #                                     "outputLanguage" "fr",
+        #                                     "isActivelyStreaming" = "true",
+        #                                     "isPremiumCustomer" = "false"})
+
+        # response = requests.post(url, data=data)
+        # response = requests.get(url)
         utils.clear_screen()
         utils.print_transcript(text)
 

@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import zlib
+import requests
 
 from inspect import signature
 from typing import BinaryIO, Iterable, List, NamedTuple, Optional, Tuple, Union
@@ -420,7 +421,26 @@ class WhisperModel:
             vad_options=vad_parameters,
             all_language_probs=all_language_probs,
         )
+        # url = 'https://ipinfo.io/json'
+        # url = 'http://ES_search_demo.com/document/record/_search?pretty=true'
+        # roomName: streamName.lowercased(), description: description, transcript: oldTranscript, inputLanguage: Locale.preferredLanguages[0], outputLanguage: outputLanguage, isActivelyStreaming: true, isPremiumCustomer: false
+        # data = '''{        
+        #     "roomName": "ae",
+        #     "description": "Audio enhancement",
+        #     "transcript": "Hello how's it going",
+        #     "inputLanguage": "en"
+        #     "outputLanguage" "fr"
+        #     "isActivelyStreaming" = true
+        #     "isPremiumCustomer" = false
+        # }'''
+        # response = requests.post(url, data=data)
+        # response = requests.get(url)
+        # print(response.json())
+        # y = json.loads(response.json())
 
+        # the result is a Python dictionary:
+        # print(y["city"])
+        # print(segments[-1].text)        
         return segments, info
 
     def generate_segments(
