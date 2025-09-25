@@ -38,7 +38,7 @@ if __name__ == "__main__":
     parser.add_argument('--max_connection_time',
                         type=int,
                         default=300,
-                        help='Path to cache the converted ctranslate2 models.')
+                        help='The maximum duration (in seconds) a client can stay connected. Defaults to 300 seconds (5 minutes)')
     parser.add_argument('--cache_path', '-c',
                         type=str,
                         default="~/.cache/whisper-live/",
